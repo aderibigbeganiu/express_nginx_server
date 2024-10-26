@@ -1,0 +1,22 @@
+services:
+    express_nginx_server:
+        image:  server
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        container_name: ${SERVER_HOST}
+        env_file: ./.env
+        ports:
+            - "${SERVER_PORT}:${SERVER_PORT}"
+        volumes:
+            - .:/server
+    nginx:
+        image: reverse-proxy
+        restart: always
+        build:
+            context: ./nginx
+            dockerfile: ./Dockerfile
+        container_name: ${NGINX_HOST}
+        env_file: ./.env
+        ports:
+            - "${NGINX_PORT}:${NGINX_PORT}"
