@@ -3,9 +3,9 @@ services:
         image:  server
         build:
             context: .
-            dockerfile: ./Dockerfile
+            dockerfile: Dockerfile
         container_name: ${SERVER_HOST}
-        env_file: ./.env
+        env_file: .env
         ports:
             - "${SERVER_PORT}:${SERVER_PORT}"
         volumes:
@@ -15,8 +15,8 @@ services:
         restart: always
         build:
             context: ./nginx
-            dockerfile: ./Dockerfile
+            dockerfile: Dockerfile
         container_name: ${NGINX_HOST}
-        env_file: ./.env
+        env_file: .env
         ports:
             - "${NGINX_PORT}:${NGINX_PORT}"
